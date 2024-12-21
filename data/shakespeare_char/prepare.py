@@ -28,6 +28,7 @@ print(f"vocab size: {vocab_size:,}")
 
 # create a mapping from characters to integers
 stoi = { ch:i for i,ch in enumerate(chars) }
+print(stoi,'stoi')
 itos = { i:ch for i,ch in enumerate(chars) }
 def encode(s):
     return [stoi[c] for c in s] # encoder: take a string, output a list of integers
@@ -42,12 +43,13 @@ val_data = data[int(n*0.9):]
 # encode both to integers
 train_ids = encode(train_data)
 val_ids = encode(val_data)
-print(f"train has {len(train_ids):,} tokens")
-print(f"val has {len(val_ids):,} tokens")
+# print(f"train has {len(train_ids):,} tokens")
+# print(f"val has {len(val_ids):,} tokens")
 
 # export to bin files
 train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
+print(os.path.dirname(__file__),'path')
 train_ids.tofile(os.path.join(os.path.dirname(__file__), 'train.bin'))
 val_ids.tofile(os.path.join(os.path.dirname(__file__), 'val.bin'))
 
